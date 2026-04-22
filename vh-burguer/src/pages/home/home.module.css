@@ -63,54 +63,149 @@
 
 #destaques{
     background-color: var(--fundo-escuro);
-    height: 75vh;
+    height: 70vh;
     display: flex;
-    flex-direction: grid;
     justify-content: center;
+}
+
+
+.container_destaques{
+    display: flex;
     align-items: center;
+    justify-content: center;
+    height: 100%;
     gap: 20px;
 }
 
-#container_esquerda article, #container_direita article{
-    border-radius: 20px;
-    width: 488px;
-}
-
-#mais_pedidos{
-    background-image: url("/imgs/Mais_Pedidos.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 500px;
-}
-
-#muito_bacon{
-    background-image: url("/imgs/Muito_Bacon.png");
-}
-
-#super_combos{
-    background-image: url("/imgs/Super_Combos.png");
-}
-
-#muito_bacon, #super_combos{
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 240px;
-}
-
-.texto_article{
-    color: white;
-    font-size: 25px;
-}
-
-.h2_article{
-    color: white;
-    font-size: 25px;
-}
-
-#container_direita{
+.cards_direita{
+    height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 20px;
+}
+
+.card_destaque_mais_pedidos, .card_destaque_muito_bacon, .card_destaque_super_combos{
+    color: var(--fundo-claro);
+}
+
+.card_destaque_mais_pedidos{
+    background-image: url("/imgs/Mais_Pedidos.png");
+    width: 488px;
+    height: 500px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.card_destaque_muito_bacon{
+    background-image: url("/imgs/Muito_Bacon.png");
+    width: 488px;
+    height: 240px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.card_destaque_super_combos{
+    background-image: url("/imgs/Super_Combos.png");
+    width: 488px;
+    height: 240px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.card_destaque_muito_bacon p, .card_destaque_super_combos p{
+    align-self: flex-end;
+    text-align: right;
+}
+
+.destaque{
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+/*?===================*/
+/*?     CARDÁPIO      */
+/*?===================*/
+
+#cardapio{
+    background-color: var(--fundo-claro);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.container_cardapio{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+    padding: 75px 0;
+}
+
+.container_cardapio h2{
+    color: var(--laranja-destaque);
+    font-size: var(--tamanho-subtitulo);
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+/*?===================*/
+/*?     UNIDADES      */
+/*?===================*/
+
+#unidades{
+    background: linear-gradient(#00000080, #00000080),url("/imgs/unidade.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55vh;
+}
+
+.container_unidades{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    height: 100%;
+    padding: 50px 0;
+}
+
+.texto_unidades{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.texto_unidades h3{
+    font-size: var(--tamanho-titulo);
+    font-weight: 600;
+    text-transform: uppercase;
+    align-self: left;
+}
+
+.lista_unidades{
+    font-size: var(--fonte-texto);
+    line-height: 2.2;
+    list-style: none;
 }
