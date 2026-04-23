@@ -1,0 +1,30 @@
+#main{
+    background-color: var(--fundo-claro);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+#main h1{
+    color: var(--laranja-destaque);
+    font-size: var(--tamanho-titulo);
+    font-weight: 500;
+}
+
+.div_agrupar{
+    display: flex;
+    flex-direction: column;
+}
+
+.div_agrupar span{
+    font-size: var(--fonte-texto);
+    font-weight: 500;
+}
+
+.div_agrupar input, .div_agrupar select{
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}

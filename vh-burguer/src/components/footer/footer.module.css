@@ -3,7 +3,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     height: 20vh;
 }
 
@@ -40,8 +39,8 @@
 #linha{
     height: 1px;
     width: 100%;
-    background: var(--laranja-destaque);
-    opacity: .4;
+    background-color: var(--laranja-destaque);
+    border: none;
 }
 
 #footer_home p{
