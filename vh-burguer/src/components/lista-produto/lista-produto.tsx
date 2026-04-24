@@ -11,7 +11,7 @@ const ListaProduto = () => {
                 <button className={styles.botao}>Filtrar<FontAwesomeIcon icon={faSliders} /></button>
                 <div id={styles.botoes_direita}>
                     <Link href="/promocoes" className={styles.botao}>Promoções</Link>
-                    <Link href="/produtos" className={styles.botao}>Produtos</Link>
+                    <Link href="/produto" className={styles.botao}>Produtos</Link>
                 </div>
             </div>
             

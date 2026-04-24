@@ -2,6 +2,7 @@ import Footer from "@/components/footer/footer";
 import HeaderMini from "@/components/header-mini/header-mini";
 import { Fragment } from "react/jsx-runtime"
 import styles from "./produto.module.css"
+import Link from "next/link";
 
 const Produto = () => {
     return (
@@ -17,7 +18,7 @@ const Produto = () => {
 
                     <div className={styles.div_agrupar}>
                         <span>Descrição</span>
-                        <input type="text" placeholder="Uma versão superior do clássico Monster, só que MUITO maior."/>
+                        <input id={styles.input_des} type="text" placeholder="Uma versão superior do clássico Monster, só que MUITO maior."/>
                     </div>
 
                     <div className={styles.div_agrupar}>
@@ -33,7 +34,7 @@ const Produto = () => {
                             <option value="2">2</option>
                             <option value="3">3</option>
                         </select>
-                        <a href="">Adicionar Categoria</a>
+                        <Link id={styles.link} href="/categoria">Adicionar Categoria</Link>
                     </div>
 
                     <div className={styles.div_agrupar}>
