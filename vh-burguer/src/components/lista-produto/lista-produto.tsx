@@ -10,7 +10,6 @@ const ListaProduto = () => {
             <div id={styles.botoes_home}>
                 <button className={styles.botao}>Filtrar<FontAwesomeIcon icon={faSliders} /></button>
                 <div id={styles.botoes_direita}>
-                    <Link href="/promocoes" className={styles.botao}>Promoções</Link>
                     <Link href="/produto" className={styles.botao}>Produtos</Link>
                 </div>
             </div>

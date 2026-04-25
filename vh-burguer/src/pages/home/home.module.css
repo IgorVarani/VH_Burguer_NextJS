@@ -170,14 +170,13 @@
     align-items: center;
     flex-direction: column;
     gap: 50px;
-    padding: 75px 0;
+    padding: 75px 10px;
 }
 
 .container_cardapio h2{
     color: var(--laranja-destaque);
     font-size: var(--tamanho-subtitulo);
     font-weight: 500;
-    text-transform: uppercase;
 }
 
 /*?===================*/
@@ -215,7 +214,6 @@
 .texto_unidades h3{
     font-size: var(--tamanho-titulo);
     font-weight: 600;
-    text-transform: uppercase;
     align-self: left;
 }
 
