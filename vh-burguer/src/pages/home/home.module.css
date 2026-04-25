@@ -42,6 +42,8 @@
     width: 400px;
     margin-right: 5%;
     white-space: nowrap;
+    cursor: pointer;
+    transition: transform .06s ease, box-shadow .06s ease;
 }
 
 #btn_ver{
@@ -55,6 +57,13 @@
     width: 400px;
     margin-left: 5%;
     white-space: nowrap;
+    cursor: pointer;
+    transition: transform .06s ease, box-shadow .06s ease;
+}
+
+#btn_chamar:active, #btn_ver:active{
+    transform: translateY(4px);
+    box-shadow: 0 4px 0 rgba(0, 0, 0, .18);
 }
 
 /*?====================*/
@@ -67,7 +76,6 @@
     display: flex;
     justify-content: center;
 }
-
 
 .container_destaques{
     display: flex;
@@ -100,6 +108,7 @@
     padding: 20px;
     font-size: 20px;
     border-radius: 10px;
+    transition: transform .06s ease;
 }
 
 .card_destaque_muito_bacon{
@@ -113,6 +122,7 @@
     padding: 20px;
     font-size: 20px;
     border-radius: 10px;
+    transition: transform .06s ease;
 }
 
 .card_destaque_super_combos{
@@ -126,6 +136,11 @@
     padding: 20px;
     font-size: 20px;
     border-radius: 10px;
+    transition: transform .06s ease;
+}
+
+.card_destaque_mais_pedidos:hover, .card_destaque_muito_bacon:hover, .card_destaque_super_combos:hover{
+    transform: scale(1.03);
 }
 
 .card_destaque_muito_bacon p, .card_destaque_super_combos p{
