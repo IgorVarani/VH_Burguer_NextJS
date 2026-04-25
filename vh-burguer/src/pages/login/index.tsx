@@ -14,12 +14,16 @@ const Login = () => {
                             <label htmlFor="email">E-mail</label>
                             <input type="text" name="email" placeholder="email@exemplo.com"/>
                         </div>
+                        
                         <div className={styles.campo_form}>
                             <label htmlFor="senha">Senha</label>
                             <input type="password" name="senha" placeholder="********"/>
                         </div>
-                        <a href="" id={styles.esq_senha}>Esqueceu sua senha?</a>
-                        <button>Entrar</button>
+
+                        <div id={styles.container_senha}>
+                            <a href="" id={styles.esq_senha}>Esqueceu sua senha?</a>
+                            <button>Entrar</button>
+                        </div>
                     </form>
                 </div>
             </main>
