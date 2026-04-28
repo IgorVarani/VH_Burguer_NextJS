@@ -19,7 +19,7 @@
 .titulo_produto{
     background: var(--vinho);
     color: white;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 22px;
     margin: 0;
     height: 50px;
@@ -30,7 +30,7 @@
     color: #000;
     font-size: 16px;
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.2;
     height: calc(400px - 290px);
     align-content: center;
     text-overflow: ellipsis;
@@ -45,18 +45,23 @@
     background: var(--vinho);
     height: 60px;
     align-content: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .campo_itens img{
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
+}
+
+#info{
+    width: 30px;
+    height: 30px;
 }
 
 .valor_produto{
     color: var(--laranja-destaque);
     font-weight: 600;
-    font-size: 22px;
+    font-size: 24px;
     margin: 0;
 }
 

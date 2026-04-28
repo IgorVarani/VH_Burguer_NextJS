@@ -15,6 +15,7 @@
     transition: transform .06s ease, box-shadow .06s ease;
     font-size: var(--tamanho-texto-btn);
     text-decoration: none;
+    font-weight: 500;
 }
 
 .botao:active{

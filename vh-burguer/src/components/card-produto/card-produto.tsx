@@ -10,12 +10,16 @@ const CardProduto = () => {
             <div className={styles.campo_itens}>
                 <p className={styles.valor_produto}>R$35,00</p>
                 <button>
-                    <img src="/imgs/trash.svg" alt="ícone que representa exclusão." />
+                    <img id={styles.info} src="/imgs/Info.svg" alt="ícone que representa edição" />
                 </button>
-                
+
                 <button>
-                    <img src="/imgs/editar.svg" alt="ícone que representa edição" />
+                    <img src="/imgs/Editar.svg" alt="ícone que representa edição" />
                 </button>
+
+                <button>
+                    <img src="/imgs/Trash.svg" alt="ícone que representa exclusão." />
+                </button> 
             </div>
         </article>
     )

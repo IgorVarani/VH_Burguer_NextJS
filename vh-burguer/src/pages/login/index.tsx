@@ -1,8 +1,26 @@
+import { useState } from "react";
 import { Fragment } from "react/jsx-runtime";
 import styles from "./login.module.css"
+import { login } from "../api/authService";
 
 //? ESTRUTURA PADRÃO
 const Login = () => {
+    const [email, setEmail] = useState<string>("");
+    const [senha, setSenha] = useState<string>("");
+    function autenticar(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        try
+        {
+            login(email, senha);
+            console.log("Tentei");
+        }
+        catch(e: any)
+        {
+            alert(e.message);
+        }
+    }
+
+
     return (
         <Fragment>
             <main id={styles.main}>
