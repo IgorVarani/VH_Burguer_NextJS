@@ -5,9 +5,12 @@ import { login } from "../api/authService";
 
 //? ESTRUTURA PADRÃO
 const Login = () => {
+
     const [email, setEmail] = useState<string>("");
     const [senha, setSenha] = useState<string>("");
-    function autenticar(e: React.FormEvent<HTMLFormElement>) {
+    
+    function autenticar(e: React.FormEvent<HTMLFormElement>)
+    {
         e.preventDefault();
         try
         {
