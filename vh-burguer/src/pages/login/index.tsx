@@ -2,30 +2,41 @@ import { useState } from "react";
 import { Fragment } from "react/jsx-runtime";
 import styles from "./login.module.css"
 import { login } from "../api/authService";
+import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
 
 //? ESTRUTURA PADRÃO
 const Login = () => {
 
     const [email, setEmail] = useState<string>("");
     const [senha, setSenha] = useState<string>("");
+
+    const router = useRouter();
+    const notificao = (msg: string ) => toast(msg);
+    const erro = (msg: string) => toast.error(msg);
     
-    function autenticar(e: React.FormEvent<HTMLFormElement>)
+    async function autenticar(e: React.FormEvent<HTMLFormElement>)
     {
         e.preventDefault();
         try
         {
-            login(email, senha);
-            console.log("Tentei.");
+            await login(email, senha);
+            notificao("Login bem sucedido!");
+
+            setTimeout(() => {
+                router.push("/home");
+            }, 2000);
         }
-        catch(e: any)
+        catch(error: any)
         {
-            alert(e.message);
+            erro(error.message);
         }
     }
 
     return (
         <Fragment>
-            <main id={styles.main}>
+            <ToastContainer/>
+            <main id={styles.main}>                
                 <img src="/imgs/Hamburguer_Login.png" alt="Hambúrguer com ingredientes flutuando."/>
                 <div id={styles.campo_login}>
                     <h1>Login</h1>

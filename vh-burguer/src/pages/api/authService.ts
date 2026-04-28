@@ -1,12 +1,12 @@
+import secureLocalStorage from "react-secure-storage";
 import { api } from "./api";
 export async function login(email: string, senha: string){
     try
     {
         //? Requisição:
         const response = await api.post("Autenticacao/login", {email, senha});
-
-        console.log("Autorização concluída com sucesso!");
-        console.log(response.data.token);
+        const token = response.data.token;
+        secureLocalStorage.setItem("tokenzinho", token);
     }
     catch(error: any)
     {
