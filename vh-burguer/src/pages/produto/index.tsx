@@ -5,6 +5,7 @@ import styles from "./produto.module.css"
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { listarCategoria } from "../api/categoriaService";
+import { cadastrarProduto } from "../api/produtoService";
 
 interface Categoria
 {
@@ -28,6 +29,28 @@ const Produto = () => {
         setCategorias(lista.data);
     }
 
+    async function Cadastrar(e: React.FormEvent<HTMLFormElement>)
+    {
+        e.preventDefault();
+        try
+        {
+            const dados =
+            {
+                nome,
+                descricao,
+                preco,
+                imagem,
+                categoriasId: categoriasSelecionadas
+            }
+
+            await cadastrarProduto(dados)
+        }
+        catch(error: any)
+        {
+            console.log(error.message);
+        }
+    }
+
     //? Quando o produto for renderizado, a função "listarCategoriaEmProduto" ocorrerá.
     useEffect(() => {
         listarCategoriaEmProduto();
@@ -38,7 +61,7 @@ const Produto = () => {
             <HeaderMini/>
             <main id={styles.main}>
                 <h1>CRIAR PRODUTO</h1>
-                <form id={styles.form_container}>
+                <form id={styles.form_container} onSubmit={Cadastrar}>
                     <div className={styles.div_agrupar}>
                         <span>Nome do Produto</span>
                         <input type="text" placeholder="Big Monster"
