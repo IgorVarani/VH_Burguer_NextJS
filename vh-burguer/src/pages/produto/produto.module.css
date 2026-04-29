@@ -60,6 +60,13 @@
     font-weight: 500;
     border-radius: 10px;
     border: none;
+    cursor: pointer;
+    transition: transform .06s ease, box-shadow .06s ease;
+}
+
+#btn_add:active, #btn_salvar:active{
+    transform: translateY(4px);
+    box-shadow: 0 4px 0 rgba(0, 0, 0, .18);
 }
 
 #btn_add{
