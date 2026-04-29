@@ -4,19 +4,32 @@ import HeaderMini from "@/components/header-mini/header-mini";
 import Footer from "@/components/footer/footer";
 import React, { useState } from "react";
 import { cadastrarCategoria } from "../api/categoriaService";
+import { toast, ToastContainer } from "react-toastify";
 
 const Categoria = () => {
 
     const[categoria, setCategoria] = useState<string>("");
 
-    function cadastrar(e: React.FormEvent<HTMLFormElement>)
+    const notificacao = (msg: string) => toast.success(msg);
+    const erro = (msg: string) => toast.error(msg);
+
+    async function cadastrar(e: React.FormEvent<HTMLFormElement>)
     {
         e.preventDefault();
-        cadastrarCategoria(categoria);
+        try
+        {
+            await cadastrarCategoria(categoria);
+            notificacao("Cadastro realizado com sucesso!");
+        }
+        catch(error: any)
+        {
+            erro(error.message);
+        }
     }
 
     return (
         <Fragment>
+            <ToastContainer/>
             <HeaderMini/>
             <main id={styles.main}>
                 <h1>CRIAR CATEGORIA</h1>
