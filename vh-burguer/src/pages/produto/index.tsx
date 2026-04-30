@@ -104,7 +104,6 @@ const Produto = () => {
                     </div>
 
                     <div id={styles.botoes}>
-                        <button id={styles.btn_add}>Adicionar Promoção</button>
                         <button id={styles.btn_salvar}>Salvar</button>
                     </div>
                 </form>

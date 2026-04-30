@@ -53,7 +53,7 @@
     justify-content: space-evenly;
 }
 
-#btn_add, #btn_salvar{
+#btn_salvar{
     width: 300px;
     height: 40px;
     font-size: var(--tamanho-texto-btn);
@@ -64,14 +64,9 @@
     transition: transform .06s ease, box-shadow .06s ease;
 }
 
-#btn_add:active, #btn_salvar:active{
+#btn_salvar:active{
     transform: translateY(4px);
     box-shadow: 0 4px 0 rgba(0, 0, 0, .18);
-}
-
-#btn_add{
-    background-color: var(--vinho);
-    color: var(--laranja-destaque);
 }
 
 #btn_salvar{
