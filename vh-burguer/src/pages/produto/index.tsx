@@ -6,10 +6,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { listarCategoria } from "../api/categoriaService";
 import { cadastrarProduto } from "../api/produtoService";
+import { erro, notificao } from "@/utils/toast";
+import Toast from "@/components/toast/toast";
 
 interface Categoria
 {
-    categoriaID: number,
+    categoriaId: number,
     nome: string
 }
 
@@ -22,6 +24,11 @@ const Produto = () => {
     const[preco, setPreco] = useState<string>("");
     const[imagem, setImagem] = useState<File | null>(null);
     const[categoriasSelecionadas, setCategoriasSelecionadas] = useState<number[]>([]);
+    console.log(nome);
+    console.log(descricao);
+    console.log(preco);
+    console.log(imagem);
+    console.log(categoriasSelecionadas);
 
     async function listarCategoriaEmProduto()
     {
@@ -44,10 +51,11 @@ const Produto = () => {
             }
 
             await cadastrarProduto(dados)
+            notificao("Produto Cadastrado!");
         }
         catch(error: any)
         {
-            console.log(error.message);
+            erro(error.message);
         }
     }
 
@@ -59,6 +67,7 @@ const Produto = () => {
     return (
         <Fragment>
             <HeaderMini/>
+            <Toast/>
             <main id={styles.main}>
                 <h1>CRIAR PRODUTO</h1>
                 <form id={styles.form_container} onSubmit={Cadastrar}>
@@ -84,7 +93,7 @@ const Produto = () => {
                         <span>Categoria</span>
                         <select multiple onChange={(e) =>
                         setCategoriasSelecionadas(Array.from(e.target.selectedOptions).map((option) => Number(option.value)))}>
-                            {categorias.map((item) => (<option value={item.categoriaID} key={item.categoriaID}>{item.nome}</option>))}
+                            {categorias.map((item) => (<option value={item.categoriaId} key={item.categoriaId}>{item.nome}</option>))}
                         </select>
                         <Link id={styles.link} href="/categoria">Adicionar Categoria</Link>
                     </div>

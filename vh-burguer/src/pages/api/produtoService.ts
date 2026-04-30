@@ -31,6 +31,6 @@ export async function cadastrarProduto(dados: Produto)
     }
     catch(error: any)
     {
-        throw new Error(error.message);
+        throw new Error(error.response.data);
     }
 }
