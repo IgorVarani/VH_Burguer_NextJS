@@ -1,14 +1,28 @@
+import { formatarPreco } from "@/utils/formatacao";
 import styles from "./card-produto.module.css"
+import Link from "next/link";
 
-const CardProduto = () => {
+type Produto =
+{
+    imagem: string,
+    titulo: string,
+    descricao: string,
+    preco: number,
+    produtoId: number
+}
+
+const CardProduto = ({imagem, titulo, descricao, preco, produtoId} : Produto) => {
     return (
         <article className={styles.card_produto}>
-            <img src="/imgs/Hamburguer_Alcatra.png" alt="Produto vendido pela loja." className={styles.img_produto} />
-            <h3 className={styles.titulo_produto}>Monster</h3>
-            <p className={styles.desc_produto}>Hambúrguer brutal, suculento e exageradamente saboroso.</p>
+            <Link href={"/detalhe-produto/" + produtoId}>
+                <img src={imagem} alt="Produto vendido pela loja." className={styles.img_produto} />
+            </Link>
+
+            <h3 className={styles.titulo_produto}>{titulo}</h3>
+            <p className={styles.desc_produto}>{descricao}</p>
 
             <div className={styles.campo_itens}>
-                <p className={styles.valor_produto}>R$35,00</p>
+                <p className={styles.valor_produto}>{formatarPreco(preco)}</p>
                 <button>
                     <img id={styles.info} src="/imgs/Info.svg" alt="ícone que representa edição" />
                 </button>
