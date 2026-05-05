@@ -23,9 +23,9 @@ const CardProduto = ({imagem, titulo, descricao, preco, produtoId} : Produto) =>
 
             <div className={styles.campo_itens}>
                 <p className={styles.valor_produto}>{formatarPreco(preco)}</p>
-                <button>
-                    <img id={styles.info} src="/imgs/Info.svg" alt="ícone que representa edição" />
-                </button>
+                <Link href={"/historico/" + produtoId}>
+                    <img id={styles.info} src="/imgs/Info.svg" alt="ícone que representa informação" />
+                </Link>
 
                 <button>
                     <img src="/imgs/Editar.svg" alt="ícone que representa edição" />

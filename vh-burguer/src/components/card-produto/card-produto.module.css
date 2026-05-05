@@ -68,6 +68,11 @@
 .campo_itens button{
     background: none;
     border: none;
+    cursor: pointer;
+}
+
+.campo_itens button:active{
+    transform: scale(1.1);
 }
 
 .produto_inativo{
