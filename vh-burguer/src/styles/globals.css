@@ -28,18 +28,22 @@
 /*?====================*/
 
 ::-webkit-scrollbar{
-  width: 10px;
-  height: 10px;
+    width: 10px;
+    height: 10px;
 }
 
 ::-webkit-scrollbar-track{
-  background: var(--vinho);
+    background: var(--vinho);
 }
 
 ::-webkit-scrollbar-thumb{
-  background: var(--laranja-destaque);
+    background: var(--laranja-destaque);
+    border: 2px solid transparent;
+    background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover{
-  background: #ffd080;
+    background: var(--fundo-claro);
+    border: 2px solid transparent;
+    background-clip: content-box;
 }

@@ -42,7 +42,6 @@ const Categoria = () => {
 
                     <div id={styles.botoes}>
                         <button id={styles.btn_salvar}>Salvar</button>
-                        <button id={styles.btn_cancelar}>Cancelar</button>
                     </div>
                 </form>
             </main>

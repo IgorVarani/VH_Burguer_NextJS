@@ -95,7 +95,7 @@ const Detalhe = () => {
                                 </div>
                             </div>
                         </>
-                        ) : (<p>Carregando...</p>)}
+                        ) : (<p>Carregando Detalhes...</p>)}
                     </article>
                 </section>
             </main>
