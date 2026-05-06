@@ -16,6 +16,10 @@
     display: block;
 }
 
+.img_produto:hover{
+    border: 10px solid var(--vinho);
+}
+
 .titulo_produto{
     background: var(--vinho);
     color: white;
@@ -71,7 +75,7 @@
     cursor: pointer;
 }
 
-.campo_itens button:active{
+.campo_itens img:hover{
     transform: scale(1.1);
 }
 

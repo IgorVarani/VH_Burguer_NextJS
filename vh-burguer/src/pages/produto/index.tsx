@@ -5,9 +5,10 @@ import styles from "./produto.module.css"
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { listarCategoria } from "../api/categoriaService";
-import { cadastrarProduto } from "../api/produtoService";
+import { cadastrarProduto, editarProduto, listarPorId } from "../api/produtoService";
 import { erro, notificao } from "@/utils/toast";
 import Toast from "@/components/toast/toast";
+import { useRouter } from "next/router";
 
 interface Categoria
 {
@@ -24,11 +25,10 @@ const Produto = () => {
     const[preco, setPreco] = useState<string>("");
     const[imagem, setImagem] = useState<File | null>(null);
     const[categoriasSelecionadas, setCategoriasSelecionadas] = useState<number[]>([]);
-    console.log(nome);
-    console.log(descricao);
-    console.log(preco);
-    console.log(imagem);
-    console.log(categoriasSelecionadas);
+
+    const router = useRouter();
+    const id = router.query.id;
+    let telaEditar = id ? true : false;
 
     async function listarCategoriaEmProduto()
     {
@@ -36,7 +36,18 @@ const Produto = () => {
         setCategorias(lista.data);
     }
 
-    async function Cadastrar(e: React.FormEvent<HTMLFormElement>)
+    async function carregarInformacoes()
+    {
+        if(!id) return;
+
+        const produto = await listarPorId(Number(id));
+        setNome(produto.nome);
+        setDescricao(produto.descricao);
+        setPreco(produto.preco);
+        setCategoriasSelecionadas(produto.categoriasId)
+    }
+
+    async function salvarProduto(e: React.FormEvent<HTMLFormElement>)
     {
         e.preventDefault();
         try
@@ -50,8 +61,16 @@ const Produto = () => {
                 categoriasId: categoriasSelecionadas
             }
 
-            await cadastrarProduto(dados)
-            notificao("Produto Cadastrado!");
+            if(telaEditar)
+            {
+                await editarProduto(Number(id), dados);
+                notificao("Produto Editado!");
+            }
+            else
+            {
+                await cadastrarProduto(dados)
+                notificao("Produto Cadastrado!");
+            }
         }
         catch(error: any)
         {
@@ -62,6 +81,11 @@ const Produto = () => {
     //? Quando o produto for renderizado, a função "listarCategoriaEmProduto" ocorrerá.
     useEffect(() => {
         listarCategoriaEmProduto();
+        
+        if(id)
+        {
+            carregarInformacoes();
+        }
     }, [])
 
     return (
@@ -69,8 +93,8 @@ const Produto = () => {
             <HeaderMini/>
             <Toast/>
             <main id={styles.main}>
-                <h1>CRIAR PRODUTO</h1>
-                <form id={styles.form_container} onSubmit={Cadastrar}>
+                <h1>{telaEditar ? "EDITAR PRODUTO" : "CRIAR PRODUTO"}</h1>
+                <form id={styles.form_container} onSubmit={salvarProduto}>
                     <div className={styles.div_agrupar}>
                         <span>Nome do Produto</span>
                         <input type="text" placeholder="Big Monster"
@@ -91,7 +115,7 @@ const Produto = () => {
 
                     <div className={styles.div_agrupar}>
                         <span>Categoria</span>
-                        <select multiple onChange={(e) =>
+                        <select multiple value={categoriasSelecionadas.map(String)} onChange={(e) =>
                         setCategoriasSelecionadas(Array.from(e.target.selectedOptions).map((option) => Number(option.value)))}>
                             {categorias.map((item) => (<option value={item.categoriaId} key={item.categoriaId}>{item.nome}</option>))}
                         </select>
@@ -99,7 +123,7 @@ const Produto = () => {
                     </div>
 
                     <div className={styles.div_agrupar}>
-                        <span>URL da Imagem</span>
+                        <span>Imagem do Produto</span>
                         <input type="file" onChange={(e) => {if(e.target.files && e.target.files[0])(setImagem(e.target.files[0]))}}/>
                     </div>
 

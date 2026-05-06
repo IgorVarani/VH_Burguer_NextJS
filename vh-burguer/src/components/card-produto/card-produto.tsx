@@ -8,10 +8,11 @@ type Produto =
     titulo: string,
     descricao: string,
     preco: number,
-    produtoId: number
+    produtoId: number,
+    onDelete: (produtoId: number) => void
 }
 
-const CardProduto = ({imagem, titulo, descricao, preco, produtoId} : Produto) => {
+const CardProduto = ({imagem, titulo, descricao, preco, produtoId, onDelete} : Produto) => {
     return (
         <article className={styles.card_produto}>
             <Link href={"/detalhe-produto/" + produtoId}>
@@ -27,11 +28,11 @@ const CardProduto = ({imagem, titulo, descricao, preco, produtoId} : Produto) =>
                     <img id={styles.info} src="/imgs/Info.svg" alt="ícone que representa informação" />
                 </Link>
 
-                <button>
+                <Link href={"/produto?id=" + produtoId}>
                     <img src="/imgs/Editar.svg" alt="ícone que representa edição" />
-                </button>
+                </Link>
 
-                <button>
+                <button onClick={() => onDelete(produtoId)}>
                     <img src="/imgs/Trash.svg" alt="ícone que representa exclusão." />
                 </button> 
             </div>

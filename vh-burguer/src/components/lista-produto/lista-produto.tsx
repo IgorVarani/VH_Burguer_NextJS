@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSliders } from '@fortawesome/free-solid-svg-icons'
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { listarProduto } from "@/pages/api/produtoService";
+import { excluirProduto, listarProduto } from "@/pages/api/produtoService";
+import { erro, notificao, toastConfirmarExclusao } from "@/utils/toast";
 
 interface Produto
 {
@@ -13,6 +14,7 @@ interface Produto
     preco: number,
     descricao: string,
     imagemUrl: string
+    statusProduto: boolean,
 }
 
 const ListaProduto = () => {
@@ -30,6 +32,28 @@ const ListaProduto = () => {
         {
             console.log(error.message)
         }
+    }
+
+    async function confirmarExclusao(produtoId: number)
+    {
+        toastConfirmarExclusao(async () => {
+            try
+            {
+                await excluirProduto(produtoId);
+                setProdutos((listaAtual) => 
+                    listaAtual.map((produto) => 
+                        produto.produtoId === produtoId
+                            ?{...produto, statusProduto: false}
+                            : produto
+                ))
+                notificao("Produto Inativado!");
+                listar();
+            }
+            catch(error: any)
+            {
+                erro(error.message);
+            }
+        });
     }
 
     useEffect(() =>
@@ -50,7 +74,8 @@ const ListaProduto = () => {
                 {produtos.length > 0 ? produtos.map((item) => (
                     <CardProduto key={item.produtoId} produtoId={item.produtoId}
                     titulo={item.nome} descricao={item.descricao}
-                    preco={item.preco} imagem={item.imagemUrl}/>
+                    preco={item.preco} imagem={item.imagemUrl}
+                    onDelete={confirmarExclusao}/>
                 )) : (
                     <p>Carregando Produto...</p>
                 )}
