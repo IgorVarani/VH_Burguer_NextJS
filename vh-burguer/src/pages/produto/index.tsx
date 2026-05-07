@@ -9,6 +9,7 @@ import { cadastrarProduto, editarProduto, listarPorId } from "../api/produtoServ
 import { erro, notificao } from "@/utils/toast";
 import Toast from "@/components/toast/toast";
 import { useRouter } from "next/router";
+import { verificarAutenticacao } from "@/utils/auth";
 
 interface Categoria
 {
@@ -25,6 +26,7 @@ const Produto = () => {
     const[preco, setPreco] = useState<string>("");
     const[imagem, setImagem] = useState<File | null>(null);
     const[categoriasSelecionadas, setCategoriasSelecionadas] = useState<number[]>([]);
+    const[estaAutenticado, setEstaAutenticado] = useState(false);
 
     const router = useRouter();
     const id = router.query.id;
@@ -80,13 +82,23 @@ const Produto = () => {
 
     //? Quando o produto for renderizado, a função "listarCategoriaEmProduto" ocorrerá.
     useEffect(() => {
-        listarCategoriaEmProduto();
-        
-        if(id)
+        if(!verificarAutenticacao())
         {
-            carregarInformacoes();
+            router.push("/home")
         }
+        else
+        {
+            setEstaAutenticado(true);
+        }
+        
+        listarCategoriaEmProduto();
+        carregarInformacoes();
     }, [])
+
+    if(!estaAutenticado)
+    {
+        return null;
+    }
 
     return (
         <Fragment>

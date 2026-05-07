@@ -9,10 +9,11 @@ type Produto =
     descricao: string,
     preco: number,
     produtoId: number,
-    onDelete: (produtoId: number) => void
+    onDelete: (produtoId: number) => void,
+    estaLogado: boolean,
 }
 
-const CardProduto = ({imagem, titulo, descricao, preco, produtoId, onDelete} : Produto) => {
+const CardProduto = ({imagem, titulo, descricao, preco, produtoId, onDelete, estaLogado} : Produto) => {
     return (
         <article className={styles.card_produto}>
             <Link href={"/detalhe-produto/" + produtoId}>
@@ -24,17 +25,21 @@ const CardProduto = ({imagem, titulo, descricao, preco, produtoId, onDelete} : P
 
             <div className={styles.campo_itens}>
                 <p className={styles.valor_produto}>{formatarPreco(preco)}</p>
-                <Link href={"/historico/" + produtoId}>
-                    <img id={styles.info} src="/imgs/Info.svg" alt="ícone que representa informação" />
-                </Link>
+                {estaLogado && (
+                    <>
+                        <Link href={"/historico/" + produtoId}>
+                            <img id={styles.info} src="/imgs/Info.svg" alt="ícone que representa informação" />
+                        </Link>
 
-                <Link href={"/produto?id=" + produtoId}>
-                    <img src="/imgs/Editar.svg" alt="ícone que representa edição" />
-                </Link>
+                        <Link href={"/produto?id=" + produtoId}>
+                            <img src="/imgs/Editar.svg" alt="ícone que representa edição" />
+                        </Link>
 
-                <button onClick={() => onDelete(produtoId)}>
-                    <img src="/imgs/Trash.svg" alt="ícone que representa exclusão." />
-                </button> 
+                        <button onClick={() => onDelete(produtoId)}>
+                            <img src="/imgs/Trash.svg" alt="ícone que representa exclusão." />
+                        </button> 
+                    </>
+                )}
             </div>
         </article>
     )

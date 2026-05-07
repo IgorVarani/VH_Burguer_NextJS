@@ -2,9 +2,11 @@ import { Fragment } from "react/jsx-runtime"
 import styles from "./categoria.module.css"
 import HeaderMini from "@/components/header-mini/header-mini";
 import Footer from "@/components/footer/footer";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { cadastrarCategoria } from "../api/categoriaService";
 import { toast, ToastContainer } from "react-toastify";
+import { verificarAutenticacao } from "@/utils/auth";
+import { useRouter } from "next/router";
 
 const Categoria = () => {
 
@@ -12,6 +14,7 @@ const Categoria = () => {
 
     const notificacao = (msg: string) => toast.success(msg);
     const erro = (msg: string) => toast.error(msg);
+    const router = useRouter();
 
     async function cadastrar(e: React.FormEvent<HTMLFormElement>)
     {
@@ -26,6 +29,13 @@ const Categoria = () => {
             erro(error.message);
         }
     }
+
+    useEffect(() => {
+        if(!verificarAutenticacao())
+        {
+            router.push("/home")
+        }
+    }, [])
 
     return (
         <Fragment>
