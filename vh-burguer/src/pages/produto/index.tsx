@@ -43,10 +43,11 @@ const Produto = () => {
         if(!id) return;
 
         const produto = await listarPorId(Number(id));
+
         setNome(produto.nome);
         setDescricao(produto.descricao);
-        setPreco(produto.preco);
-        setCategoriasSelecionadas(produto.categoriasId)
+        setPreco(String(produto.preco));
+        setCategoriasSelecionadas(produto.categoriasId || []);
     }
 
     async function salvarProduto(e: React.FormEvent<HTMLFormElement>)
@@ -82,18 +83,17 @@ const Produto = () => {
 
     //? Quando o produto for renderizado, a função "listarCategoriaEmProduto" ocorrerá.
     useEffect(() => {
+        if(!router.isReady) return;
+
         if(!verificarAutenticacao())
         {
             router.push("/home")
+            return;
         }
-        else
-        {
             setEstaAutenticado(true);
-        }
-        
-        listarCategoriaEmProduto();
-        carregarInformacoes();
-    }, [])
+            listarCategoriaEmProduto();
+            carregarInformacoes();
+    }, [router.isReady, id])
 
     if(!estaAutenticado)
     {
@@ -127,7 +127,7 @@ const Produto = () => {
 
                     <div className={styles.div_agrupar}>
                         <span>Categoria</span>
-                        <select multiple value={categoriasSelecionadas.map(String)} onChange={(e) =>
+                        <select multiple value={categoriasSelecionadas.map((item) => item.toString())} onChange={(e) =>
                         setCategoriasSelecionadas(Array.from(e.target.selectedOptions).map((option) => Number(option.value)))}>
                             {categorias.map((item) => (<option value={item.categoriaId} key={item.categoriaId}>{item.nome}</option>))}
                         </select>

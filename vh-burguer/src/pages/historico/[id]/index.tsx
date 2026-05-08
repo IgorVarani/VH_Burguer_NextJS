@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { listarPorIdDoProduto } from "@/pages/api/logProdutoService";
 import { erro } from "@/utils/toast";
 import { useParams } from "next/navigation";
+import { verificarAutenticacao } from "@/utils/auth";
+import { useRouter } from "next/router";
 
 type HistoricoAlteracao =
 {
@@ -19,7 +21,9 @@ type HistoricoAlteracao =
 const Historico = () => {
 
     const[historico, setHistorico] = useState<HistoricoAlteracao[] | null>(null);
+    const[estaAutenticado, setEstaAutenticado] = useState(false);
 
+    const router = useRouter();
     const params = useParams();
     const id = params?.id;
     
@@ -37,12 +41,26 @@ const Historico = () => {
     }
 
     useEffect(() => {
+        if(!verificarAutenticacao)
+        {
+            router.push("/home")
+        }
+        else
+        {
+            setEstaAutenticado(true)
+        }
+
         if(!id) return;
 
         setTimeout(() => {
             listarHistorico();
         }, 1000);
     }, [id]);
+
+    if(!estaAutenticado)
+    {
+        return null;
+    }
     
     return (
         <>

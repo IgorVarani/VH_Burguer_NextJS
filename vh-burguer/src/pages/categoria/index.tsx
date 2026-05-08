@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 const Categoria = () => {
 
     const[categoria, setCategoria] = useState<string>("");
+    const[estaAutenticado, setEstaAutenticado] = useState(false);
 
     const notificacao = (msg: string) => toast.success(msg);
     const erro = (msg: string) => toast.error(msg);
@@ -35,7 +36,16 @@ const Categoria = () => {
         {
             router.push("/home")
         }
+        else
+        {
+            setEstaAutenticado(true)
+        }
     }, [])
+
+    if(!estaAutenticado)
+    {
+        return null;
+    }
 
     return (
         <Fragment>

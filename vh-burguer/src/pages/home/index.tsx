@@ -17,7 +17,7 @@ const Home = () => {
                     
                     <div id={styles.botoes}>
                         <button id={styles.btn_chamar}>Chamar Atendente</button>
-                        <button id={styles.btn_ver}>Ver Cardápio</button>
+                        <button id={styles.btn_ver} onClick={() => window.location.href = "#cardapio"}>Ver Cardápio</button>
                     </div>
                 </section>
 
